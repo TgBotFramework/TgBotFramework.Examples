@@ -7,7 +7,6 @@ using TgBotFramework.WrapperExtensions;
 
 await Host.CreateDefaultBuilder().ConfigureServices(services =>
 {
-    services.AddSingleton<StepEchoHandler>();
     
     services.AddBotService<ExampleContext>("token", builder => builder
             .UseStages()
@@ -15,6 +14,8 @@ await Host.CreateDefaultBuilder().ConfigureServices(services =>
         .UseLongPolling(ParallelMode.MultiThreaded)
         .SetPipeline(pipeBuilder => pipeBuilder.Use<StepEchoHandler>())
     );
+    
+    services.AddSingleton<StepEchoHandler>();
 }).RunConsoleAsync();
 
 public class ExampleContext : UpdateContext, IStageContext
