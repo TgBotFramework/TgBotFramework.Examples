@@ -19,6 +19,7 @@ public class DebugHandler : IUpdateHandler<UpdateContext>
 {
     public async Task HandleAsync(UpdateContext context, UpdateDelegate<UpdateContext> next, CancellationToken cancellationToken)
     {
-        // write anything and put break point. Then compare console output of update with what you see in debugger in context.Update
+        // put break point. Then compare console output of update with what you see in debugger in context.Update
+        await next(context, cancellationToken);
     }
 }
