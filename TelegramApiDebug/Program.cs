@@ -7,6 +7,8 @@ using TgBotFramework.WrapperExtensions;
 
 await Host.CreateDefaultBuilder().ConfigureServices(services =>
 {
+    services.AddScoped<DebugHandler>();
+    
     services.AddBotService<UpdateContext>("<token>", builder => builder
         .UseLongPolling(ParallelMode.SingleThreaded, new LongPollingOptions() { DebugOutput = true })
         .SetPipeline(pipeBuilder => pipeBuilder
