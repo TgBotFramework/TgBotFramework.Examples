@@ -10,7 +10,7 @@ await Host.CreateDefaultBuilder().ConfigureServices(services =>
     
     services.AddBotService<ExampleContext>("token", builder => builder
             .UseStages()
-            .UseStages<InMemoryVault<BaseStage>, BaseStage, ExampleContext>(StageStrategy.PerChat) // same thing
+            .UseStages<InMemoryVault<CustomStage>, CustomStage, ExampleContext>(StageStrategy.PerChat) // same thing
         .UseLongPolling(ParallelMode.MultiThreaded)
         .SetPipeline(pipeBuilder => pipeBuilder.Use<StepEchoHandler>())
     );
@@ -21,7 +21,13 @@ await Host.CreateDefaultBuilder().ConfigureServices(services =>
 public class ExampleContext : UpdateContext, IStageContext
 {
     public IUserState UserStage { get; set; }
-} 
+    public CustomStage StageData { get; set; }
+}
+
+public class CustomStage : BaseStage
+{
+    
+}
 
 public class StepEchoHandler : IUpdateHandler<ExampleContext>
 {
