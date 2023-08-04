@@ -9,7 +9,11 @@
 
     <ItemGroup>
       <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
-      <PackageReference Include="TgBotFramework" Version="0.5.2" />
+      <PackageReference Include="Telegram.Bot" Version="19.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\TgBotFramework\src\TgBotFramework.csproj" />
     </ItemGroup>
 
 </Project>
